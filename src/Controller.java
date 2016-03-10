@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import javafx.embed.swing.SwingFXUtils;
@@ -14,6 +15,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 
 /**
@@ -26,30 +28,5 @@ public class Controller{
 
     @FXML
     public void changeMusicSuggestion(){
-        URL url = null;
-        String iTunesInfo = "";
-        try {
-            url = new URL("https://itunes.apple.com/search?term=faded");
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-            String input;
-            while((input = in.readLine()) != null){
-                iTunesInfo += input;
-            }
-            in.close();
-        }catch (Exception e){
-            System.err.println(e);
-        }
-        JsonParser iTunes = new JsonParser();
-        JsonElement test= iTunes.parse(iTunesInfo);
-        System.out.println(test.getAsJsonObject().getAsJsonArray("results").get(0).getAsJsonObject());
-        try{
-            String modifiedURL = test.getAsJsonObject().getAsJsonArray("results").get(0).getAsJsonObject().get("artworkUrl100").toString();
-            modifiedURL = modifiedURL.replace("\"", "");
-            URL imageURL = new URL(modifiedURL);
-            BufferedImage artwork = ImageIO.read(imageURL);
-            forecastArtwork.setImage(SwingFXUtils.toFXImage(artwork, null));
-        }catch (Exception e){
-            System.err.println(e);
-        }
     }
 }

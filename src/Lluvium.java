@@ -1,9 +1,12 @@
+import com.github.dvdme.ForecastIOLib.ForecastIO;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -23,8 +26,11 @@ import java.net.URL;
 public class Lluvium extends Application{
     int draggedAmount = 0;
     double draggedX = 0;
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        forecastController.getTracks();
         primaryStage.setTitle("Lluvium");
         GridPane Lluvium_big_main = (GridPane) FXMLLoader.load(getClass().getResource("main.fxml"));
         GridPane Lluvium_big_forecast = (GridPane) FXMLLoader.load(getClass().getResource("forecast_big.fxml"));
@@ -37,7 +43,6 @@ public class Lluvium extends Application{
         Scene big_main = new Scene(main_big, 768, 1024);
         primaryStage.setScene(big_main);
         primaryStage.show();
-        Controller.getTracks();
 
         System.out.println(Lluvium_big_forecast.getTranslateX());
 
@@ -91,4 +96,5 @@ public class Lluvium extends Application{
     public static void main(String[] args) {
         launch(args);
     }
+
 }

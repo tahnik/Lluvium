@@ -25,7 +25,7 @@
       <RowConstraints minHeight="10.0" prefHeight="400.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <Label text="9°" textFill="WHITE" GridPane.halignment="LEFT">
+      <Label fx:id="mainWeather" text="9°" textFill="WHITE" GridPane.halignment="LEFT">
          <font>
             <Font name="Arial Bold" size="120.0" />
          </font>
@@ -42,7 +42,7 @@
             </ImageView>
          </children>
       </HBox>
-      <Label text="Sunday" textFill="WHITE" GridPane.columnSpan="3" GridPane.rowIndex="1">
+      <Label fx:id="mainDay" text="Sunday" textFill="WHITE" GridPane.columnSpan="3" GridPane.rowIndex="1">
          <font>
             <Font name="Arial" size="90.0" />
          </font>
@@ -70,22 +70,22 @@
             <Image url="@resources/humidity.png" />
          </image>
       </ImageView>
-      <Label text="20 MPH" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label fx:id="mainWind" text="20 MPH" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label text="Right" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label fx:id="mainWindDirection" text="Right" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label text="0.2 MM" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label fx:id="mainRain" text="0.2 MM" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label text="80%" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label fx:id="mainHumidity" text="80%" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
          </font>

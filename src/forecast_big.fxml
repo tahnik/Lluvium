@@ -41,7 +41,7 @@
                   <Image url="@resources/left-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <ImageView fx:id="forecastArtwork" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <image>
                   <Image url="@resources/Lana-Del-Rey-Born-To-Die-Paradise-Edition-album-artwork-cover.jpg" />
                </image>

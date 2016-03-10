@@ -35,6 +35,10 @@ public class Song {
         return artist;
     }
 
+    public Image getArtwork(){
+        return this.artwork;
+    }
+
     public String getName() {
         return name;
     }

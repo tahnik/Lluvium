@@ -37,6 +37,7 @@ public class Lluvium extends Application{
         Scene big_main = new Scene(main_big, 768, 1024);
         primaryStage.setScene(big_main);
         primaryStage.show();
+        Controller.getTracks();
 
         System.out.println(Lluvium_big_forecast.getTranslateX());
 

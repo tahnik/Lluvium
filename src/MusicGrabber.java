@@ -19,8 +19,16 @@ public class MusicGrabber {
     JsonObject lastFM;
     String term = "";
     String JSONString = "";
+    ArrayList<Song> topTracks = new ArrayList<Song>();
+
     public MusicGrabber(String term){
         this.term = term;
+        getLastFMJSON();
+        setLastFM();
+        setSong();
+    }
+    public ArrayList<Song> getTopTracks(){
+        return this.topTracks;
     }
     public void getLastFMJSON(){
         URL url = null;
@@ -44,7 +52,6 @@ public class MusicGrabber {
     }
     public void setSong(){
         JsonArray tracks = lastFM.get("tracks").getAsJsonObject().get("track").getAsJsonArray();
-        ArrayList<Song> topTracks = new ArrayList<Song>();
         //System.out.println(tracks);
         for(int i = 0 ; i < 10; i++) {
             Song song = new Song();

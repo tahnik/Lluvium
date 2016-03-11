@@ -22,6 +22,8 @@ public class trackController implements Initializable{
     int nowPlaying = 0;
     Boolean leftButtonClicked = false;
     Boolean rightButtonClicked = false;
+    private String weatherCondition;
+    private String songGenre;
 
     @FXML
     public void changeMusicSuggestionRight(){
@@ -70,7 +72,25 @@ public class trackController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MusicGrabber musicGrabber = new MusicGrabber("disco");
+        weatherCondition = mainController.getWeatherCondition();
+        System.out.println(weatherCondition);
+        if(weatherCondition.toLowerCase().contains("cloudy")){
+            songGenre = "chill";
+        }else if(weatherCondition.toLowerCase().contains("rain")){
+            songGenre = "classic";
+        }else if(weatherCondition.toLowerCase().contains("snow")){
+            songGenre = "instrumental";
+        }else if(weatherCondition.toLowerCase().contains("fog")){
+            songGenre = "guitar";
+        }else{
+            songGenre = "rock";
+        }
+        System.out.println(songGenre);
+        MusicGrabber musicGrabber = new MusicGrabber(songGenre);
         tracks = musicGrabber.getTopTracks();
+        trackArtwork.setImage(tracks.get(0).getArtwork());
+        trackName.setText(tracks.get(0).getName());
+        trackArtist.setText(tracks.get(0).getArtist());
+        nowPlaying++;
     }
 }

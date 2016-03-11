@@ -23,7 +23,7 @@
       <RowConstraints minHeight="10.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="180.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="RIGHT">
+      <ImageView fx:id="weatherTopArt" fitHeight="180.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="RIGHT">
          <image>
             <Image url="@resources/Cloud.png" />
          </image>

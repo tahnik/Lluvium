@@ -2,6 +2,8 @@ import com.github.dvdme.ForecastIOLib.ForecastIO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -17,6 +19,8 @@ public class mainController implements Initializable{
     @FXML private Label mainWindDirection;
     @FXML private Label mainRain;
     @FXML private Label mainHumidity;
+    @FXML private ImageView weatherTopArt;
+    private static String weatherCondition;
 
     public void setWeather(){
         try {
@@ -36,8 +40,33 @@ public class mainController implements Initializable{
             mainRain.setText(io.getCurrently().get("precipIntensity").toString());
             mainHumidity.setText(io.getCurrently().get("humidity").toString());
             mainWindDirection.setText(io.getCurrently().get("windBearing").toString());
+            weatherCondition = replaceChar(io.getCurrently().get("summary").toString());
         }catch (Exception e){
             System.err.println("Couldn't load weather data");
+        }
+    }
+
+    public void changeTopArt(){
+        if(weatherCondition.toLowerCase().contains("cloudy")){
+            Image image = new Image("/resources/rain_top_final.png");
+            System.out.println(image.getHeight());
+            weatherTopArt.setImage(image);
+        }else if(weatherCondition.toLowerCase().contains("rain")){
+            Image image = new Image("/resources/rain_top_final.png");
+            System.out.println(image.getHeight());
+            weatherTopArt.setImage(image);
+        }else if(weatherCondition.toLowerCase().contains("snow")){
+            Image image = new Image("/resources/rain_top_final.png");
+            System.out.println(image.getHeight());
+            weatherTopArt.setImage(image);
+        }else if(weatherCondition.toLowerCase().contains("fog")){
+            Image image = new Image("/resources/rain_top_final.png");
+            System.out.println(image.getHeight());
+            weatherTopArt.setImage(image);
+        }else{
+            Image image = new Image("/resources/sun_top_final.png");
+            System.out.println(image.getHeight());
+            weatherTopArt.setImage(image);
         }
     }
 
@@ -60,8 +89,15 @@ public class mainController implements Initializable{
         }
         return "Sunday";
     }
+    public static String getWeatherCondition(){
+        return weatherCondition;
+    }
+    public String replaceChar(String temp){
+        return temp.replace("\"", "");
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setWeather();
+        changeTopArt();
     }
 }

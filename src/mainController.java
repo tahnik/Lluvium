@@ -1,5 +1,3 @@
-package Final;
-
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

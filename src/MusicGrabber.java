@@ -1,5 +1,3 @@
-package Final;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -61,6 +59,7 @@ public class MusicGrabber {
             e.printStackTrace();
         }
 
+        /*
         PrintWriter disco = null;
         try {
             disco = new PrintWriter("offline/disco.txt");
@@ -72,6 +71,7 @@ public class MusicGrabber {
                 disco.close();
             }
         }
+        */
     }
     public void setLastFM(){
         JsonParser parser = new JsonParser();

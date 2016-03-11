@@ -1,5 +1,3 @@
-package Final;
-
 import javafx.scene.image.Image;
 
 /**

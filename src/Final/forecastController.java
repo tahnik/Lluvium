@@ -34,44 +34,48 @@ public class forecastController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ForecastIO io = new ForecastIO("1b7e5f33c5e426dab13ba0bb2eb55913");
-        io.setUnits(ForecastIO.UNITS_SI);
-        io.setLang(ForecastIO.LANG_ENGLISH);
-        io.getForecast("51.522910", "-0.043139");
-        FIODaily fioDaily = new FIODaily(io);
+        try {
+            ForecastIO io = new ForecastIO("1b7e5f33c5e426dab13ba0bb2eb55913");
+            io.setUnits(ForecastIO.UNITS_SI);
+            io.setLang(ForecastIO.LANG_ENGLISH);
+            io.getForecast("51.522910", "-0.043139");
+            FIODaily fioDaily = new FIODaily(io);
 
-        Calendar calendar = Calendar.getInstance();
-        if(fioDaily.days() < 0){
-            System.out.println("No Data");
-        }else{
-            for(int i = 1 ; i < fioDaily.days()- 3 ; i++){
-                String[] h = fioDaily.getDay(i).getFieldsArray();
-                System.out.println("Day #" + i);
-                calendar.add(Calendar.DATE, 1);
-                System.out.println(Arrays.toString(h));
-                switch (i) {
-                    case 1:
-                        firstDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
-                        firstRain.setText(fioDaily.getDay(i).getByKey(h[16]));
-                        firstWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
-                        firstWind.setText(fioDaily.getDay(i).getByKey(h[11]));
-                    case 2:
-                        secondDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
-                        secondRain.setText(fioDaily.getDay(i).getByKey(h[16]));
-                        secondWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
-                        secondWind.setText(fioDaily.getDay(i).getByKey(h[11]));
-                    case 3:
-                        thirdDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
-                        thirdRain.setText(fioDaily.getDay(i).getByKey(h[16]));
-                        thirdWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
-                        thirdWind.setText(fioDaily.getDay(i).getByKey(h[11]));
-                    case 4:
-                        fourthDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
-                        fourthRain.setText(fioDaily.getDay(i).getByKey(h[16]));
-                        fourthWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
-                        fourthWind.setText(fioDaily.getDay(i).getByKey(h[11]));
+            Calendar calendar = Calendar.getInstance();
+            if (fioDaily.days() < 0) {
+                System.out.println("No Data");
+            } else {
+                for (int i = 1; i < fioDaily.days() - 3; i++) {
+                    String[] h = fioDaily.getDay(i).getFieldsArray();
+                    System.out.println("Day #" + i);
+                    calendar.add(Calendar.DATE, 1);
+                    System.out.println(Arrays.toString(h));
+                    switch (i) {
+                        case 1:
+                            firstDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
+                            firstRain.setText(fioDaily.getDay(i).getByKey(h[16]));
+                            firstWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
+                            firstWind.setText(fioDaily.getDay(i).getByKey(h[11]));
+                        case 2:
+                            secondDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
+                            secondRain.setText(fioDaily.getDay(i).getByKey(h[16]));
+                            secondWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
+                            secondWind.setText(fioDaily.getDay(i).getByKey(h[11]));
+                        case 3:
+                            thirdDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
+                            thirdRain.setText(fioDaily.getDay(i).getByKey(h[16]));
+                            thirdWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
+                            thirdWind.setText(fioDaily.getDay(i).getByKey(h[11]));
+                        case 4:
+                            fourthDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
+                            fourthRain.setText(fioDaily.getDay(i).getByKey(h[16]));
+                            fourthWeather.setText(fioDaily.getDay(i).getByKey(h[1]));
+                            fourthWind.setText(fioDaily.getDay(i).getByKey(h[11]));
+                    }
                 }
             }
+        }catch (Exception e){
+            System.err.print("Couldn't load forecast");
         }
     }
     public String getDay(int x){

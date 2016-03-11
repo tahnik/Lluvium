@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -71,7 +72,7 @@ public class trackController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MusicGrabber musicGrabber = new MusicGrabber("pop");
+        MusicGrabber musicGrabber = new MusicGrabber("disco");
         tracks = musicGrabber.getTopTracks();
     }
 }

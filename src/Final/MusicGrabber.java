@@ -7,9 +7,7 @@ import javafx.embed.swing.SwingFXUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.rmi.server.ExportException;
@@ -26,16 +24,21 @@ public class MusicGrabber {
 
     public MusicGrabber(String term){
         this.term = term;
-        getLastFMJSON();
-        setLastFM();
-        setSong();
+        try {
+            getLastFMJSON();
+            setLastFM();
+            setSong();
+        }catch (Exception e){
+            System.err.println("Couldn't load music data");
+        }
     }
     public ArrayList<Song> getTopTracks(){
         return this.topTracks;
     }
     public void getLastFMJSON(){
         URL url = null;
-        String lastFMURL = "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + term + "&api_key=5677b69d95c3fa7acba18f42c53a126b&format=json";
+        String lastFMURL = "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + term +
+                "&api_key=5677b69d95c3fa7acba18f42c53a126b&format=json";
         BufferedReader in = null;
         try {
             url = new URL(lastFMURL);
@@ -49,6 +52,25 @@ public class MusicGrabber {
             System.out.println("Finished loading tracks...");
         }catch (Exception e){
             System.err.println(e);
+        }
+        try {
+            if (in != null) {
+                in.close();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        PrintWriter disco = null;
+        try {
+            disco = new PrintWriter("offline/disco.txt");
+            disco.write(JSONString);
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            if (disco != null) {
+                disco.close();
+            }
         }
     }
     public void setLastFM(){

@@ -21,22 +21,26 @@ public class mainController implements Initializable{
     @FXML private Label mainHumidity;
 
     public void setWeather(){
-        ForecastIO io = new ForecastIO("1b7e5f33c5e426dab13ba0bb2eb55913");
-        io.setUnits(ForecastIO.UNITS_SI);
-        io.setLang(ForecastIO.LANG_ENGLISH);
-        io.getForecast("51.522910", "-0.043139");
-        System.out.println(io.getCurrently());
-        Double weatherDouble = Double.parseDouble(io.getCurrently().get("temperature").toString());
-        mainDegree.setText(weatherDouble.intValue() + "°");
-        Calendar calendar = Calendar.getInstance();
-        long timeInMilli = (long) Double.parseDouble(io.getCurrently().get("time").toString() + "000");
-        calendar.setTimeInMillis(timeInMilli);
-        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-        mainDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
-        mainWind.setText(io.getCurrently().get("windSpeed").toString());
-        mainRain.setText(io.getCurrently().get("precipIntensity").toString());
-        mainHumidity.setText(io.getCurrently().get("humidity").toString());
-        mainWindDirection.setText(io.getCurrently().get("windBearing").toString());
+        try {
+            ForecastIO io = new ForecastIO("1b7e5f33c5e426dab13ba0bb2eb55913");
+            io.setUnits(ForecastIO.UNITS_SI);
+            io.setLang(ForecastIO.LANG_ENGLISH);
+            io.getForecast("51.522910", "-0.043139");
+            System.out.println(io.getCurrently());
+            Double weatherDouble = Double.parseDouble(io.getCurrently().get("temperature").toString());
+            mainDegree.setText(weatherDouble.intValue() + "°");
+            Calendar calendar = Calendar.getInstance();
+            long timeInMilli = (long) Double.parseDouble(io.getCurrently().get("time").toString() + "000");
+            calendar.setTimeInMillis(timeInMilli);
+            System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+            mainDay.setText(getDay(calendar.get(Calendar.DAY_OF_WEEK)));
+            mainWind.setText(io.getCurrently().get("windSpeed").toString());
+            mainRain.setText(io.getCurrently().get("precipIntensity").toString());
+            mainHumidity.setText(io.getCurrently().get("humidity").toString());
+            mainWindDirection.setText(io.getCurrently().get("windBearing").toString());
+        }catch (Exception e){
+            System.err.println("Couldn't load weather data");
+        }
     }
 
     public String getDay(int x){

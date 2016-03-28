@@ -55,7 +55,7 @@ public class Lluvium_big extends Stage{
         primaryStage.show();
         */
 
-        this.setResizable(false);
+        //this.setResizable(false);
         this.setScene(big_main);
         this.show();
 

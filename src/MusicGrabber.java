@@ -2,12 +2,16 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.shape.Path;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.Buffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.server.ExportException;
 import java.util.ArrayList;
 
@@ -34,8 +38,9 @@ public class MusicGrabber {
         return this.topTracks;
     }
     public void getLastFMJSON(){
+        /*
         URL url = null;
-        String lastFMURL = "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + term +
+        String lastFMURL = "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=" + "rock" +
                 "&api_key=5677b69d95c3fa7acba18f42c53a126b&format=json";
         BufferedReader in = null;
         try {
@@ -59,10 +64,9 @@ public class MusicGrabber {
             e.printStackTrace();
         }
 
-        /*
         PrintWriter disco = null;
         try {
-            disco = new PrintWriter("offline/disco.txt");
+            disco = new PrintWriter("offline/rock.txt");
             disco.write(JSONString);
         }catch (IOException e){
             e.printStackTrace();
@@ -72,6 +76,15 @@ public class MusicGrabber {
             }
         }
         */
+
+        try {
+            for(String line : Files.readAllLines(Paths.get("offline/" + term + ".txt"))){
+                JSONString += line;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(JSONString);
     }
     public void setLastFM(){
         JsonParser parser = new JsonParser();

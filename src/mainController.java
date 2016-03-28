@@ -1,7 +1,10 @@
 import com.github.dvdme.ForecastIOLib.ForecastIO;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -21,6 +24,7 @@ public class mainController implements Initializable{
     @FXML private Label mainHumidity;
     @FXML private ImageView weatherTopArt;
     private static String weatherCondition;
+    Double weatherDouble;
 
     public void setWeather(){
         try {
@@ -29,7 +33,7 @@ public class mainController implements Initializable{
             io.setLang(ForecastIO.LANG_ENGLISH);
             io.getForecast("51.522910", "-0.043139");
             System.out.println(io.getCurrently());
-            Double weatherDouble = Double.parseDouble(io.getCurrently().get("temperature").toString());
+            weatherDouble = Double.parseDouble(io.getCurrently().get("temperature").toString());
             mainDegree.setText(weatherDouble.intValue() + "°");
             Calendar calendar = Calendar.getInstance();
             long timeInMilli = (long) Double.parseDouble(io.getCurrently().get("time").toString() + "000");
@@ -44,6 +48,11 @@ public class mainController implements Initializable{
         }catch (Exception e){
             System.err.println("Couldn't load weather data");
         }
+    }
+
+    public void changeToFar(){
+        Double far = weatherDouble + 32;
+        mainDegree.setText(far.intValue() + "");
     }
 
     public void changeTopArt(){

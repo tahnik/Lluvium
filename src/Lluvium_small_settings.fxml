@@ -68,7 +68,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ToggleButton mnemonicParsing="false" text="C°" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <ToggleButton fx:id="settingsScale" mnemonicParsing="false" text="C°" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
